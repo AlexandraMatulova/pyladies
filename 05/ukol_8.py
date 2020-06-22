@@ -1,45 +1,72 @@
 rodne_cislo = input("Jake je tvoje rodne cislo? ")
 
 # (a)
-if len(rodne_cislo) > 11:
-    print('Zadane rodne cislo ma moc znaku')
-if rodne_cislo[6] != '/':
-    print('Nezadal jsi cislo ve spravnem formatu, za 6 cisly musi nasledovat /')
-for i in rodne_cislo[0:6]:
-    if ord(i) < 48 or ord(i) > 57:
-        print('Nezadal jsi cislo ve spravnem formatu, prvnich 6 znaku musi byt cisla')
-for i in rodne_cislo[7:11]:
-    if ord(i) < 48 or ord(i) > 57:
-        print('Nezadal jsi cislo ve spravnem formatu, posledni 4 znaky musi byt cisla') 
+def format_check(rodne_cislo):
+    if len(rodne_cislo) > 11:
+        return False
+    if rodne_cislo[6] != '/':
+        return False
+    if not rodne_cislo[0:6].isdigit() and not rodne_cislo[7:11].isdigit():
+        return False
+    else:
+        return True
 
 # (b)
-rodne_cislo_withoutslash = rodne_cislo[:6] + rodne_cislo[7:]
-rodne_cislo_int = int(rodne_cislo_withoutslash)
-if rodne_cislo_int % 11 != 0:
-    print('Nezadal jsi cislo ve spravnem formatu, zadane cislo neni delitelne 11')
+def division_by_eleven(rodne_cislo):
+    rodne_cislo_withoutslash = rodne_cislo[:6] + rodne_cislo[7:]
+    rodne_cislo_int = int(rodne_cislo_withoutslash)
+    if rodne_cislo_int % 11 != 0:
+        return False
+    else:
+        return True
 
 # (c)
 # rok
-if int(rodne_cislo[:2]) < 85 and int(rodne_cislo[:2] > 20):
-    print('Program akceptuje pouze rodna cisla vydana od roku 1985 do dneska')
+def year_check(rodne_cislo):
+    year = int(rodne_cislo[0:2])
+    if year < 85 and year > 20:
+        return False
+    else: 
+        return True
+
 # den
-if int(rodne_cislo[4:6]) > 31:
-    print('Den narozeni v rodnem cisle je nespravny, musi to byt cislo od 1 do 31')
+def day_check(rodne_cislo):
+    day = int(rodne_cislo[4:6])
+    if day > 31:
+        return False
+    else:
+        return True
+
 # mesic
-if int(rodne_cislo[2:4]) == 0:
-    print('Zadany mesic rodneho cisla je nespravny')
-elif int(rodne_cislo[2:4]) > 12 and int(rodne_cislo[2:4]) < 21:
-    print('Zadany mesic rodneho cisla je nespravny')
-elif int(rodne_cislo[2:4]) > 32 and int(rodne_cislo[2:4]) < 51:
-    print('Zadany mesic rodneho cisla je nespravny')
-elif int(rodne_cislo[2:4]) > 62 and int(rodne_cislo[2:4]) < 71:
-    print('Zadany mesic rodneho cisla je nespravny')
-elif int(rodne_cislo[2:4]) > 82:
-    print('Zadany mesic rodneho cisla je nespravny')
+def month_check(rodne_cislo):
+    month = int(rodne_cislo[2:4])
+    correct_month = list(range(1, 13)) + list(range(21, 33)) + list(range(51, 63)) + list(range(71, 83))
+    if month in correct_month:
+        return True
+    else:
+        return False
+
+def check_rc(rodne_cislo):
+    if (
+        format_check(rodne_cislo) and 
+        division_by_eleven(rodne_cislo) and 
+        year_check(rodne_cislo) and 
+        month_check(rodne_cislo) and 
+        day_check(rodne_cislo)
+        ):
+        return 'Zadal jsi spravne rodne cislo'
+    else:
+        return 'Rodne cislo je nespravne nebo jsi prilis stary :)'
+
+print(check_rc(rodne_cislo))
 
 # (d)
-if int(rodne_cislo[2:4]) > 50:
-    print('Pokud jsi muz, zadane rodne cislo neni spravne, ale format je v poradku')
-if int(rodne_cislo[2:4]) < 50:
-    print('Pokud jsi zena, zadane rodne cislo neni spravne, ale format je v poradku')
+def gender_check(rodne_cislo):
+    month = int(rodne_cislo[2:4])
+    if month > 50:
+        print('Jsi zena')
+    else:
+        print('Jsi muz')
+
+gender_check(rodne_cislo)
 
