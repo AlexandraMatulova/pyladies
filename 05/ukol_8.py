@@ -2,11 +2,11 @@ rodne_cislo = input("Jake je tvoje rodne cislo? ")
 
 # (a)
 def format_check(rodne_cislo):
-    if len(rodne_cislo) > 11:
+    if len(rodne_cislo) != 11:
         return False
     if rodne_cislo[6] != '/':
         return False
-    if not rodne_cislo[0:6].isdigit() and not rodne_cislo[7:11].isdigit():
+    if not rodne_cislo[0:6].isdigit() or not rodne_cislo[7:11].isdigit():
         return False
     else:
         return True
@@ -62,7 +62,11 @@ print(check_rc(rodne_cislo))
 
 # (d)
 def gender_check(rodne_cislo):
-    month = int(rodne_cislo[2:4])
+    try:
+        month = int(rodne_cislo[2:4])
+    except ValueError:
+        print('Zadano nevalidni rodne cislo, nelze urcit pohlavi')
+        return
     if month > 50:
         print('Jsi zena')
     else:
