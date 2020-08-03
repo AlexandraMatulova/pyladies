@@ -1,0 +1,24 @@
+{
+   "amarylkovite":[
+      "bledule jarni",
+      "snezenka podsneznik"
+   ],
+   "aralkovite":[
+      "brectan popinavy"
+   ],
+   "brukvovite":[
+      "horcice polni",
+      "kycelnice cibulkonosna",
+      "lzicnik lekarsky"
+   ],
+   "hluchavkovite":[
+      "levandule zperena",
+      "mata rolni",
+      "materidouska casna",
+      "medovnik medunkolisty"
+   ],
+   "koprivovite":[
+      "kohoutek lucni",
+      "kopriva dvoudoma"
+   ]
+}
